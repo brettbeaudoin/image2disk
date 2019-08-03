@@ -1,9 +1,14 @@
 #!/bin/bash
 
 ##################################################################
+# Require sudo right away to avoid confusion later
+##################################################################
+sudo echo 
+
+##################################################################
 # Get image file from args or prompt
 ##################################################################
-ARG=`$@ | tr -d '[:space:]'`
+ARG=$1
 if [ "$ARG" == "" ]; then
 	echo -n "Enter path to image file and press [ENTER]: "
 	read IMGFILE
