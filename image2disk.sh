@@ -57,15 +57,17 @@ case "$response" in
 		echo "Unmounting $DEV"
 		diskutil unmountDisk $DEV
 
-		echo "Burning $IMGFILE to /dev/rdisk$DEVNUM .  This will take several minutes."
 		if [[ "$OSTYPE" == "darwin"* ]]; then
 			# MacOS expects 1m (lowercase)
-			sudo dd if="$IMGFILE" of=/dev/rdisk$DEVNUM bs=1m
+			BLOCKSIZE=1m
 		else
 			# Linux expexts 1M (uppercase)
-			sudo dd if="$IMGFILE" of=/dev/rdisk$DEVNUM bs=1M
+			BLOCKSIZE=1M
 		fi
 		
+		echo "Burning $IMGFILE to /dev/rdisk$DEVNUM .  This will take several minutes."
+		sudo dd if="$IMGFILE" of=/dev/rdisk$DEVNUM bs=$BLOCKSIZE
+
 		echo "Ejecting $IMGFILE ..."
 		diskutil eject "$DEV"
 		;;
