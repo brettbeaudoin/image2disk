@@ -61,7 +61,7 @@ case "$response" in
 			# MacOS expects 1m (lowercase)
 			BLOCKSIZE=1m
 		else
-			# Linux expexts 1M (uppercase)
+			# Linux expects 1M (uppercase)
 			BLOCKSIZE=1M
 		fi
 		
